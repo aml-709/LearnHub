@@ -1,1 +1,1 @@
-web: gunicorn Learn/Learn.wsgi
+web: gunicorn Learn.wsgi
