@@ -1,5 +1,44 @@
+# Виртуальное окружение
 venv/
-__pychache__/
-*.__pychache__
+ENV/
+env/
+.venv/
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+*__pycache__/
+
+# База данных (SQLite)
+db.sqlite3
+
+# Миграции (опционально, если хотите сбрасывать миграции на CI)
+*/migrations/*.pyc
+*/migrations/*.pyo
+
+# Статические файлы
 staticfiles/
+static/
+
+# Медиа-файлы (если есть)
+media/
+
+# Файлы среды и секреты
 .env
+*.env
+
+# Отчёты coverage
+htmlcov/
+.coverage
+
+# Настройки IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Логи
+*.log
