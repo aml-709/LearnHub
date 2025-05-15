@@ -21,16 +21,15 @@ jobs:
 
       - name: Remove old migrations and database
         run: |
-          cd Learn
-          rm -f db.sqlite3
-          find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
-          find . -path "*/migrations/*.pyc"  -delete
+          rm -f Learn/db.sqlite3
+          find Learn -path "*/migrations/*.py" -not -name "__init__.py" -delete
+          find Learn -path "*/migrations/*.pyc"  -delete
       
       - name: Run migrations
         run: |
-          python manage.py makemigrations
-          python manage.py migrate
+          python Learn/manage.py makemigrations
+          python Learn/manage.py migrate
 
       - name: Run tests
         run: |
-          python manage.py test
+          python Learn/manage.py test
