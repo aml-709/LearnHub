@@ -28,11 +28,9 @@ jobs:
       
       - name: Run migrations
         run: |
-          cd Learn
           python manage.py makemigrations
           python manage.py migrate
 
       - name: Run tests
         run: |
-          cd Learn
           python manage.py test
