@@ -1,0 +1,5 @@
+venv/
+__pychache__/
+*.__pychache__
+staticfiles/
+.env

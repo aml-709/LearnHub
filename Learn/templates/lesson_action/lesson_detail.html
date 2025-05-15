@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <!-- Вернуться к курсу -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>{{ lesson.title }}</h2>
+            <a href="{% url 'course_detail' lesson.section.course.id %}" class="btn btn-outline-secondary btn-sm">← Назад к курсу</a>
+        </div>
+        <!-- Изображение к уроку -->
+        <div class="mb-3">
+            <p>{{ lesson.content }}</p>
+            {% if lesson.image %}
+                <img src="{{ lesson.image.url }}" alt="Изображение к уроку" class="img-fluid rounded">
+            {% endif %}
+        </div>
+        <!-- Кнопки редактирования и удаления урока -->
+        {% if user == lesson.section.course.creator %}
+            <div class="d-flex gap-2">
+                <a href="{% url 'edit_lesson' lesson.id %}" class="btn btn-sm btn-outline-primary">Редактировать урок</a>
+                <form method="post" action="{% url 'delete_lesson' lesson.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Удалить урок</button>
+                </form>
+            </div>
+        {% endif %}
+
+        <!-- Кнопка завершения урока для студентов -->
+        {% if user.is_authenticated and user.role == 'student' %}
+            <form method="post" action="{% url 'complete_lesson' lesson.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-success">Завершить урок</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="display-4">Добро пожаловать в LearningHub!</h1>
+    <p class="lead">Платформа для управления курсами и обучения. Создавайте, изучайте и делитесь знаниями.</p>
+    <div class="mt-4">
+        {% if user.is_authenticated %}
+            {% if user.role == 'teacher' %}
+                <a href="{% url 'teacher_dashboard' %}" class="btn btn-primary btn-lg">Перейти в панель преподавателя</a>
+            {% elif user.role == 'student' %}
+                <a href="{% url 'student_dashboard' %}" class="btn btn-primary btn-lg">Перейти в панель студента</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-success btn-lg me-2">Войти</a>
+            <a href="{% url 'register' %}" class="btn btn-outline-secondary btn-lg">Зарегистрироваться</a>
+        {% endif %}
+    </div>
+    <div class="mt-5">
+        <img src="{% static 'images/peter.png' %}" alt="LearningHub" class="img-fluid rounded shadow">
+    </div>
+</div>
+{% endblock %}
+

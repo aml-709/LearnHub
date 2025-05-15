@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Навигация по разделам -->
+        <aside class="col-md-3 mb-4">
+            <div class="bg-light rounded p-3 shadow-sm">
+                <h4>Навигация</h4>
+                {% if user.is_authenticated and user.role == 'teacher' %}
+                    <a href="{% url 'add_section' course.id %}" class="btn btn-success w-100 mb-3">Создать раздел</a>
+                {% endif %}
+                {% for section in course.sections.all %}
+                    <div class="accordion mb-2" id="sectionAccordion{{ section.id }}">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading{{ section.id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ section.id }}" aria-expanded="false" aria-controls="collapse{{ section.id }}">
+                                    {{ section.title }}
+                                </button>
+                            </h2>
+                            <div id="collapse{{ section.id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ section.id }}" data-bs-parent="#sectionAccordion{{ section.id }}">
+                                <div class="accordion-body">
+                                    <ul class="list-unstyled">
+                                        {% for lesson in section.lessons.all %}
+                                            <li>
+                                                <a href="{% url 'lesson_detail' lesson.id %}" class="text-decoration-none text-info">{{ lesson.title }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% if user.is_authenticated and user.role == 'teacher' %}
+                                        <div class="dropdown mt-2 w-100">
+                                            <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton{{ section.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Действия
+                                            </button>
+                                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton{{ section.id }}">
+                                                <li><a class="dropdown-item" href="{% url 'add_lesson' section.id %}">Добавить урок</a></li>
+                                                <li>
+                                                    <form method="post" action="{% url 'delete_section' section.id %}" style="display:inline;">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="dropdown-item text-danger">Удалить раздел</button>
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </aside>
+        <!-- Содержание курса -->
+        <main class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h1>{{ course.title }}</h1>
+                {% if user.is_authenticated and user == course.creator %}
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'edit_course' course.id %}" class="btn btn-primary btn-sm">Редактировать</a>
+                        <form method="post" action="{% url 'delete_course' course.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+            <p>{{ course.description }}</p>
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% elif user.is_authenticated and user.role == 'student' %}
+                <form method="post" action="{% url 'enroll_course' course.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success btn-sm">Записаться на курс</button>
+                </form>
+            {% endif %}
+        </main>
+    </div>
+</div>
+{% endblock %}

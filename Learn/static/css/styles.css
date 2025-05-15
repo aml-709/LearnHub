@@ -1,0 +1,108 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: #f8f9fa;
+    color: #23272b;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.page-wrapper, .container, .profile-body {
+    background: transparent;
+}
+
+.navbar, .navbar-dark, .navbar.bg-dark {
+    background: #23272b !important;
+    border-bottom: 1px solid #222;
+}
+
+.navbar .nav-link, .navbar-brand {
+    color: #f1f1f1 !important;
+    transition: color 0.2s;
+}
+.navbar .nav-link.active, .navbar .nav-link:hover {
+    color: #00e1ff !important;
+}
+
+
+.card, .accordion-item, .dropdown-menu {
+    background: #fff;
+    color: #23272b;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+}
+
+.btn, .btn-primary, .btn-success, .btn-danger, .btn-outline-primary, .btn-outline-secondary, .btn-outline-danger {
+    border-radius: 7px;
+    font-weight: 500;
+    box-shadow: 0 2px 8px 0 rgba(0,225,255,0.08);
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary, .btn-outline-primary {
+    background: #00e1ff;
+    color: #181a1b;
+    border: none;
+}
+.btn-primary:hover, .btn-outline-primary:hover {
+    background: #00b3c6;
+    color: #fff;
+}
+
+.btn-success {
+    background: #00ff85;
+    color: #181a1b;
+    border: none;
+}
+.btn-success:hover {
+    background: #00c66a;
+    color: #fff;
+}
+
+.btn-danger, .btn-outline-danger {
+    background: #ff005c;
+    color: #fff;
+    border: none;
+}
+.btn-danger:hover, .btn-outline-danger:hover {
+    background: #c60047;
+    color: #fff;
+}
+
+.accordion-button {
+    background: #fff;
+    color: #00b3c6;
+    border-radius: 10px;
+}
+.accordion-button:not(.collapsed) {
+    background: #e9ecef;
+    color: #00b3c6;
+}
+
+.dropdown-menu {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+footer {
+    background: #f8f9fa !important;
+    color: #23272b;
+    margin-top: auto;
+    width: 100%;
+    box-shadow: 0 -2px 16px 0 rgba(0,0,0,0.08);
+}
+
+.alert-danger, .alert-success {
+    border-radius: 7px;
+    font-weight: 500;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: #e9ecef;
+}
+::-webkit-scrollbar-thumb {
+    background: #00e1ff;
+    border-radius: 8px;
+}
