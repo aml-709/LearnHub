@@ -19,6 +19,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Remove old migrations and database
+        run: |
+          cd Learn
+          rm -f db.sqlite3
+          find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+          find . -path "*/migrations/*.pyc"  -delete
+      
       - name: Run migrations
         run: |
           cd Learn
