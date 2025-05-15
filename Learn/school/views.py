@@ -48,9 +48,6 @@ class LogoutView(View):
 def index(request):
     return render(request, 'index.html', {index: 'index'})       
 
-def profile(request):
-        return render(request, 'profiles/profile.html', {profile: 'profile'})
-
 def courses(request):
     all_courses = Course.objects.all()
     return render(request, 'course_action/courses.html', {'courses': all_courses})
