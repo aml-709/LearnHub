@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,9 +86,14 @@ WSGI_APPLICATION = 'Learn.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'learnshool',
+        'USER': 'postgres',
+        'PASSWORD': '4679',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
 
 
