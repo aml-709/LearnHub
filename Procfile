@@ -1,1 +1,1 @@
-web: python Learn/manage.py migrate && python Learn/manage.py collectstatic --noinput && gunicorn Learn.wsgi
+web: python Learn/manage.py migrate && python Learn/manage.py collectstatic --noinput && gunicorn Learn.Learn.wsgi
