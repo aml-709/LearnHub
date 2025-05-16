@@ -1,1 +1,1 @@
-web: gunicorn Learn.wsgi
+web: cd Learn && gunicorn Learn.wsgi
